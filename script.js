@@ -1,70 +1,90 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Set current year in footer
+    // 1. Set current year in footer
     const yearSpan = document.getElementById('year');
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
     }
 
-    // Font loading fallback check
-    if (document.fonts) {
-        document.fonts.ready.then(() => {
-            // Fonts loaded successfully, nothing needed
-        }).catch(() => {
-            // Add fallback class if fonts fail to load
-            document.documentElement.classList.add('fallback-fonts');
+    // 2. Header Scroll Effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // 3. Scroll Animations (Intersection Observer)
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Optional: unobserve after revealing to only animate once
+                // observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    const animatedElements = document.querySelectorAll('.fade-in, .fade-in-up');
+    animatedElements.forEach(el => {
+        observer.observe(el);
+    });
+
+    // 4. Review Modal Logic
+    const btnReview = document.getElementById('btn-review');
+    const reviewModal = document.getElementById('review-modal');
+    const closeModal = document.getElementById('close-modal');
+    const reviewForm = document.getElementById('review-form');
+
+    if (btnReview && reviewModal && closeModal) {
+        btnReview.addEventListener('click', () => {
+            reviewModal.classList.add('active');
+        });
+
+        closeModal.addEventListener('click', () => {
+            reviewModal.classList.remove('active');
+        });
+
+        // Close on outside click
+        reviewModal.addEventListener('click', (e) => {
+            if (e.target === reviewModal) {
+                reviewModal.classList.remove('active');
+            }
         });
     }
 
-    // Particle animation (only if user hasn't requested reduced motion)
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    if (!prefersReducedMotion) {
-        createParticles();
+    if (reviewForm) {
+        reviewForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // In a real application, this would send data to a backend API.
+            // Since there is no backend configured currently, we simulate a success message.
+            
+            const btn = reviewForm.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            
+            btn.textContent = "Submitting...";
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.textContent = "Success! Pending Verification.";
+                btn.style.backgroundColor = "var(--c-forest-green)";
+                
+                setTimeout(() => {
+                    reviewModal.classList.remove('active');
+                    reviewForm.reset();
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                    btn.style.backgroundColor = "";
+                }, 2000);
+            }, 800);
+        });
     }
-});
-
-function createParticles() {
-    const particlesContainer = document.getElementById('particles');
-    if (!particlesContainer) return;
-
-    const particleCount = Math.floor(window.innerWidth / 30); // Responsive amount of particles
-    
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        
-        // Random size between 1px and 4px
-        const size = Math.random() * 3 + 1;
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        
-        // Random position
-        particle.style.left = `${Math.random() * 100}vw`;
-        particle.style.top = `${Math.random() * 100}vh`;
-        
-        // Random animation duration and delay
-        const duration = Math.random() * 20 + 10;
-        const delay = Math.random() * 10;
-        
-        particle.style.animationDuration = `${duration}s`;
-        particle.style.animationDelay = `-${delay}s`; // Negative delay so some start immediately in motion
-        
-        particlesContainer.appendChild(particle);
-    }
-}
-
-// Recreate particles on resize to ensure good coverage
-let resizeTimeout;
-window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (!prefersReducedMotion) {
-            const particlesContainer = document.getElementById('particles');
-            if (particlesContainer) {
-                particlesContainer.innerHTML = '';
-                createParticles();
-            }
-        }
-    }, 300);
 });
