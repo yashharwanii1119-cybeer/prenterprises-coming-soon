@@ -213,21 +213,13 @@ img {
 .logo {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-family: var(--f-heading);
-    font-weight: 700;
-    font-size: 1.5rem;
+    transition: var(--transition);
 }
 
-.logo-mark {
-    color: var(--c-forest-green);
-    background-color: var(--c-soft-green);
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-}
-
-.logo-text {
-    color: var(--c-navy);
+.logo-img {
+    height: 64px;
+    width: auto;
+    display: block;
 }
 
 .nav-links {
@@ -652,6 +644,10 @@ img {
     
     .mobile-menu-toggle {
         display: flex;
+    }
+    
+    .logo-img {
+        height: 48px;
     }
     
     .hero-title {
