@@ -47,8 +47,14 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="hero split-hero" id="home">
-            <div class="container hero-split-container">
+        <section class="hero cinematic-hero" id="home">
+            <video class="hero-bg-video" autoplay muted loop playsinline preload="none" poster="images/video-poster.png">
+                <source src="public/videos/solar-hero.webm" type="video/webm">
+                <source src="public/videos/solar-hero.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+            
+            <div class="container hero-content-wrapper">
                 <div class="hero-text-content fade-in-up">
                     <span class="badge eyebrow">SMART SOLAR SOLUTIONS FOR A BRIGHTER FUTURE</span>
                     <h1 class="hero-title">Power Your Home with <span class="highlight-text">Clean Solar Energy.</span></h1>
@@ -59,15 +65,6 @@
                         <a href="#contact" class="btn btn-primary stagger-1">Get a Free Consultation</a>
                         <a href="#portfolio" class="btn btn-secondary stagger-2">Explore Our Projects</a>
                         <a href="https://wa.me/917742775973?text=Hello%20PR%20Enterprises%2C%20I%20am%20interested%20in%20solar%20panel%20installation%20in%20Jodhpur.%20Please%20share%20the%20details." class="btn btn-whatsapp stagger-3" target="_blank" rel="noopener">WhatsApp Us</a>
-                    </div>
-                </div>
-                <div class="hero-visual fade-in-up" style="animation-delay: 0.2s;">
-                    <div class="video-container">
-                        <video class="hero-video" autoplay muted loop playsinline preload="none" poster="images/video-poster.png">
-                            <source src="public/videos/solar-installation.webm" type="video/webm">
-                            <source src="public/videos/solar-installation.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
                     </div>
                 </div>
             </div>
