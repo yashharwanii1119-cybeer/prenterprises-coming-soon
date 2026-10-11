@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    const animatedElements = document.querySelectorAll('.fade-in, .fade-in-up:not(.hero-text-content)');
+    const animatedElements = document.querySelectorAll('.fade-in, .fade-in-up:not(.hero-minimal-group)');
     animatedElements.forEach(el => {
         observer.observe(el);
     });
