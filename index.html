@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/jpeg" href="favicon.jpg">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
 </head>
@@ -25,20 +25,21 @@
     <!-- Header / Nav -->
     <header class="header" id="header">
         <div class="header-container">
-            <a href="#" class="logo">
+            <a href="#" class="logo" aria-label="PR Enterprises Home">
                 <img src="images/logo.jpg" alt="PR Enterprises — Home" class="logo-img">
             </a>
             
-            <nav class="nav-links">
+            <nav class="nav-links" id="nav-links">
                 <a href="#services">Services</a>
                 <a href="#portfolio">Our Work</a>
                 <a href="#about">About</a>
                 <a href="#subsidy">Subsidy Info</a>
+                <a href="#contact" class="mobile-nav-cta">Contact Us</a>
             </nav>
             
             <div class="nav-actions">
-                <a href="#contact" class="btn btn-outline">Contact Us</a>
-                <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+                <a href="#contact" class="btn btn-outline nav-contact-btn">Contact Us</a>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" aria-expanded="false" aria-controls="nav-links">
                     <span></span><span></span><span></span>
                 </button>
             </div>
@@ -48,26 +49,31 @@
     <main>
         <!-- Hero Section -->
         <section class="hero cinematic-hero" id="home">
-            <video class="hero-bg-video" autoplay muted loop playsinline preload="none" poster="images/video-poster.png">
+            <video class="hero-bg-video" autoplay muted loop playsinline preload="auto" poster="images/video-poster.png">
                 <source src="public/videos/solar-hero.webm" type="video/webm">
                 <source src="public/videos/solar-hero.mp4" type="video/mp4">
             </video>
             <div class="hero-overlay"></div>
+            <div class="hero-glow"></div>
             
             <div class="container hero-content-wrapper">
                 <div class="hero-text-content fade-in-up">
-                    <span class="badge eyebrow">SMART SOLAR SOLUTIONS FOR A BRIGHTER FUTURE</span>
-                    <h1 class="hero-title">Power Your Home with <span class="highlight-text">Clean Solar Energy.</span></h1>
+                    <span class="badge eyebrow">ROOFTOP SOLAR • JODHPUR</span>
+                    <h1 class="hero-title">
+                        Power Your World.<br>
+                        <span class="highlight-text">Powered by the Sun.</span>
+                    </h1>
                     <p class="hero-subtitle">
-                        PR Enterprises helps you harness the sun's power with premium, high-efficiency rooftop solar solutions tailored for Jodhpur. Save money and the environment.
+                        Premium rooftop solar solutions for a brighter, cleaner future.
                     </p>
                     <div class="hero-ctas">
                         <a href="#contact" class="btn btn-primary stagger-1">Get a Free Consultation</a>
-                        <a href="#portfolio" class="btn btn-secondary stagger-2">Explore Our Projects</a>
-                        <a href="https://wa.me/917742775973?text=Hello%20PR%20Enterprises%2C%20I%20am%20interested%20in%20solar%20panel%20installation%20in%20Jodhpur.%20Please%20share%20the%20details." class="btn btn-whatsapp stagger-3" target="_blank" rel="noopener">WhatsApp Us</a>
+                        <a href="#portfolio" class="btn btn-glass stagger-2">Explore Our Work</a>
                     </div>
                 </div>
             </div>
+            
+            <div class="hero-bottom-transition"></div>
         </section>
 
         <!-- Services Section -->
